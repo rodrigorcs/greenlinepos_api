@@ -14,6 +14,12 @@ import { ListProductsController } from "./modules/products/useCases/listProducts
 import { CreateProductController } from "./modules/products/useCases/createProduct/CreateProductController";
 import { UpdateProductController } from "./modules/products/useCases/updateProduct/UpdateProductController";
 import { DeleteProductController } from "./modules/products/useCases/deleteProduct/DeleteProductController";
+import { SearchProductsController } from "./modules/products/useCases/searchProduct/SearchProductsController";
+
+import { CreateSaleController } from "./modules/sales/useCases/createSale/CreateSaleController";
+import { ListSalesController } from "./modules/sales/useCases/listSales/ListSalesController";
+import { DeleteSaleController } from "./modules/sales/useCases/deleteSale/DeleteSaleController";
+import { UpdateSaleController } from "./modules/sales/useCases/updateSale/UpdateSaleController";
 
 const router = Router();
 
@@ -31,6 +37,12 @@ const listProductsController = new ListProductsController();
 const createProductController = new CreateProductController();
 const updateProductController = new UpdateProductController();
 const deleteProductController = new DeleteProductController();
+const searchProductsController = new SearchProductsController();
+
+const listSalesController = new ListSalesController();
+const createSaleController = new CreateSaleController();
+const updateSaleController = new UpdateSaleController();
+const deleteSaleController = new DeleteSaleController();
 
 // /companies
 router.get("/companies/", listCompaniesController.handle);
@@ -49,5 +61,12 @@ router.get("/products/", listProductsController.handle);
 router.post("/products/", createProductController.handle);
 router.put("/products/:id", updateProductController.handle);
 router.delete("/products/:id", deleteProductController.handle);
+router.get("/products/search", searchProductsController.handle);
+
+// /sales
+router.get("/sales/", listSalesController.handle);
+router.post("/sales/", createSaleController.handle);
+router.put("/sales/:id", updateSaleController.handle);
+router.delete("/sales/:id", deleteSaleController.handle);
 
 export { router };
