@@ -8,17 +8,17 @@ datasource db {
 }
 
 model Companies {
-  id   String @id @default(uuid())
-  name String
+  id        String      @id @default(uuid())
+  name      String
   customers Customers[]
 
   @@map("companies")
 }
 
 model Customers {
-  id   String @id @default(uuid())
-  name String
-  company Companies @relation(fields: [id_company], references: [id])
+  id         String    @id @default(uuid())
+  name       String
+  company    Companies @relation(fields: [id_company], references: [id])
   id_company String
 
   @@map("customers")
