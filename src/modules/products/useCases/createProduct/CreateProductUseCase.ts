@@ -1,10 +1,8 @@
-import { Decimal } from "@prisma/client/runtime";
 import { prisma } from "../../../../database/prismaClient";
-
 interface ICreateProduct {
   name: string;
   bar_code: string;
-  price: Decimal;
+  price: number;
 }
 
 export class CreateProductUseCase {
