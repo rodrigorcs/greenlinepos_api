@@ -7,6 +7,11 @@ const errors = {
     status: 404,
     message: "Company not found",
   },
+  // CUSTOMERS
+  customerDoesNotExists: {
+    status: 404,
+    message: "Customer not found",
+  },
 };
 
 export { errors };
