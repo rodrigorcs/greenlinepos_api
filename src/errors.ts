@@ -12,6 +12,10 @@ const errors = {
     status: 404,
     message: "Customer not found",
   },
+  productDoesNotExists: {
+    status: 404,
+    message: "Product not found",
+  },
 };
 
 export { errors };
