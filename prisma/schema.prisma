@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Companies {
+  id   String @id @default(uuid())
+  name String
+  customers Customers[]
+
+  @@map("companies")
+}
+
+model Customers {
+  id   String @id @default(uuid())
+  name String
+  company Companies @relation(fields: [id_company], references: [id])
+  id_company String
+
+  @@map("customers")
+}
+
+model Products {
+  id                String            @id @default(uuid())
+  name              String
+  bar_code          String            @unique
+  price             Decimal
+  created_at        DateTime
+  sales             Sales?            @relation(fields: [id_sales], references: [id])
+  id_sales          String?
+  products_on_sales ProductsOnSales[]
+
+  @@map("products")
+}
+
+model Sales {
+  id                String            @id @default(uuid())
+  id_customer       String
+  products          Products[]
+  products_on_sales ProductsOnSales[]
+
+  @@map("sales")
+}
+
+model ProductsOnSales {
+  product     Products @relation(fields: [id_product], references: [id])
+  id_product  String
+  sale        Sales    @relation(fields: [id_sale], references: [id])
+  id_sale     String
+  assigned_at DateTime @default(now())
+
+  @@id([id_product, id_sale])
+  @@map("products_on_sales")
+}
