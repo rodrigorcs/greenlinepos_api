@@ -8,9 +8,10 @@ datasource db {
 }
 
 model Companies {
-  id        String      @id @default(uuid())
-  name      String
-  customers Customers[]
+  id         String      @id @default(uuid())
+  name       String
+  customers  Customers[]
+  created_at DateTime    @default(now())
 
   @@map("companies")
 }
@@ -20,19 +21,18 @@ model Customers {
   name       String
   company    Companies @relation(fields: [id_company], references: [id])
   id_company String
+  created_at DateTime  @default(now())
 
   @@map("customers")
 }
 
 model Products {
-  id                String            @id @default(uuid())
-  name              String
-  bar_code          String            @unique
-  price             Decimal
-  created_at        DateTime
-  sales             Sales?            @relation(fields: [id_sales], references: [id])
-  id_sales          String?
-  products_on_sales ProductsOnSales[]
+  id         String            @id @default(uuid())
+  name       String
+  bar_code   String            @unique
+  price      Decimal
+  created_at DateTime          @default(now())
+  sales      ProductsOnSales[]
 
   @@map("products")
 }
@@ -40,8 +40,8 @@ model Products {
 model Sales {
   id                String            @id @default(uuid())
   id_customer       String
-  products          Products[]
   products_on_sales ProductsOnSales[]
+  products          DateTime          @default(now())
 
   @@map("sales")
 }
