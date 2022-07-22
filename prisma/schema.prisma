@@ -38,10 +38,10 @@ model Products {
 }
 
 model Sales {
-  id                String            @id @default(uuid())
-  id_customer       String
-  products_on_sales ProductsOnSales[]
-  products          DateTime          @default(now())
+  id          String            @id @default(uuid())
+  id_customer String
+  products    ProductsOnSales[]
+  created_at  DateTime          @default(now())
 
   @@map("sales")
 }
